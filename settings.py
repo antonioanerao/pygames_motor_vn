@@ -1,0 +1,5 @@
+TITLE = "Jogo de Telas"
+WIDTH = 1380
+HEIGHT = 820
+FPS = 60
+TILESIZE = 64
