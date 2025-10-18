@@ -1,19 +1,28 @@
 import pygame
 import sys
+from menu_grid import MenuGrid
 
 
 class ThirdScreen:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
 
+        self.menu = MenuGrid([
+            "1) Tela 01",
+            "2) Tela 02",
+        ])
+
     def handle_event(self, event, game_screen):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+        selected = self.menu.handle_event(event)
+
+        if selected is not None:
+            if selected == 0:
+                return "first_screen"
+            elif selected == 1:
+                return "second_screen"
+            elif selected == 2:
                 pygame.quit()
                 sys.exit()
-            if event.key == pygame.K_BACKSPACE:
-                game_screen = 'first_screen'
-        return game_screen
 
     def run(self, game_screen):
         """
@@ -36,3 +45,5 @@ class ThirdScreen:
             self.display_surface.blit(text, text_rect)
             self.display_surface.blit(text_2, text_rect_2)
             self.display_surface.blit(text_3, text_rect_3)
+
+            self.menu.draw()

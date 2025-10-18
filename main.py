@@ -4,6 +4,7 @@ import settings
 from first_screen import FirstScreen
 from second_screen import SecondScreen
 from third_screen import ThirdScreen
+from fourth_screen import FourthScreen
 from change_screen import ChangeScreen
 
 
@@ -17,6 +18,7 @@ class Game:
             "first_screen": FirstScreen(),
             "second_screen": SecondScreen(),
             "third_screen": ThirdScreen(),
+            "fourth_screen": FourthScreen()
         }
         self.change_screen = ChangeScreen(self.screens)
 
