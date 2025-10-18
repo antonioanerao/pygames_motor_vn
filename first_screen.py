@@ -33,11 +33,11 @@ class FirstScreen:
 
         # Dimensões dos retângulos
         self.rect_width = max_width + 60
-        self.rect_height = 80
+        self.rect_height = 50
         self.spacing_x = self.rect_width + 40  # espaço horizontal entre colunas
-        self.spacing_y = 100  # espaço vertical entre linhas
+        self.spacing_y = 70  # espaço vertical entre linhas
         self.start_x = settings.WIDTH // 2 - (self.rect_width + 20)
-        self.start_y = settings.HEIGHT - self.rect_height * self.rows - 100
+        self.start_y = settings.HEIGHT - self.rect_height * self.rows - 40
 
     def handle_event(self, event, game_screen):
         if event.type == pygame.KEYDOWN:
@@ -77,11 +77,18 @@ class FirstScreen:
 
     def run(self, game_screen):
         self.display_surface.fill(colors.SERINGALLAB_DARK)
-        self.display_surface.fill('white', rect=pygame.Rect(settings.WIDTH // 2 - (self.rect_width + 20), 145, 835, 100))
-        font = pygame.font.Font(None, 74)
-        text = font.render('Seringal Lab', True, 'black')
-        text_rect = text.get_rect(center=(settings.WIDTH / 2, 200))
+        background_image = pygame.image.load('assets/graphics/personagens_seringal.png').convert()
+        background_image = pygame.transform.scale(background_image, (settings.WIDTH, settings.HEIGHT + 400))
+        self.display_surface.blit(background_image, (0, -400))
+
+        self.display_surface.fill('white', rect=pygame.Rect(settings.WIDTH // 2 - (self.rect_width + 20), 550, 835, 100))
+        font = pygame.font.Font(None, 40)
+        text = font.render('Somos os Guerreiros da Inovação.', True, 'black')
+        text_2 = font.render('Qual caminhos vamos trilhar primeiro?', True, 'black')
+        text_rect = text.get_rect(center=(settings.WIDTH / 2, 580))
+        text_2_rect = text.get_rect(center=(settings.WIDTH / 2, 610))
         self.display_surface.blit(text, text_rect)
+        self.display_surface.blit(text_2, text_2_rect)
 
         for i, text in enumerate(self.options):
             # Calcula a linha e coluna do item (0 a 1)
