@@ -1,9 +1,33 @@
+import importlib
+import pkgutil
+from screens import __path__ as screens_path
+
+
 class ChangeScreen:
-    def __init__(self, screens):
+    def __init__(self):
         """
-        screens: dicionário com instâncias das telas (first, second, etc.)
+        Inicializa o gerenciador de telas.
         """
-        self.screens = screens
+        self.screens = self._load_screens()
+
+    def _load_screens(self):
+        """
+        Percorre a pasta 'screens' e carrega automaticamente todas as classes de tela.
+        """
+        screens = {}
+
+        for module_info in pkgutil.iter_modules(screens_path):
+            module_name = module_info.name
+            module = importlib.import_module(f"screens.{module_name}")
+
+            for attr_name in dir(module):
+                attr = getattr(module, attr_name)
+
+                if isinstance(attr, type) and attr_name.endswith("Screen"):
+                    key = module_name
+                    screens[key] = attr()
+
+        return screens
 
     def handle_event(self, game_screen, event):
         """
@@ -17,8 +41,8 @@ class ChangeScreen:
 
     def render(self, game_screen):
         """
-        Desenha a tela correspondente.
+        Renderiza a tela atual.
         """
         current_screen = self.screens.get(game_screen)
         if current_screen:
-            current_screen.run(game_screen)
+            current_screen.run()

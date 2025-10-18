@@ -1,10 +1,6 @@
 import pygame
 import sys
 import settings
-from first_screen import FirstScreen
-from second_screen import SecondScreen
-from third_screen import ThirdScreen
-from fourth_screen import FourthScreen
 from change_screen import ChangeScreen
 
 
@@ -14,13 +10,7 @@ class Game:
         pygame.display.set_caption(settings.TITLE)
         self.screen = pygame.display.set_mode((int(settings.WIDTH), int(settings.HEIGHT)))
         self.clock = pygame.time.Clock()
-        self.screens = {
-            "first_screen": FirstScreen(),
-            "second_screen": SecondScreen(),
-            "third_screen": ThirdScreen(),
-            "fourth_screen": FourthScreen()
-        }
-        self.change_screen = ChangeScreen(self.screens)
+        self.change_screen = ChangeScreen()
 
     def run(self):
         game_screen = "first_screen"
