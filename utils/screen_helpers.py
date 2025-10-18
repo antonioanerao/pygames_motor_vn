@@ -26,9 +26,9 @@ def draw_base_screen(display_surface, bg, text, text_2,
         # Se for um caminho válido, carrega imagem
         background_image = pygame.image.load(bg).convert()
         background_image = pygame.transform.scale(
-            background_image, (settings.WIDTH, settings.HEIGHT + 400)
+            background_image, (settings.WIDTH, settings.HEIGHT)
         )
-        display_surface.blit(background_image, (0, -400))
+        display_surface.blit(background_image, (0, 0))
     else:
         # Caso contrário, usa como cor de fundo
         display_surface.fill(bg)
