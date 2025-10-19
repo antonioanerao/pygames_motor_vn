@@ -1,34 +1,30 @@
 import pygame
 import sys
 import settings
-from change_screen import ChangeScreen
+from story_manager import StoryManager
+from story_screen import StoryScreen
 
 
-class Game:
-    def __init__(self):
-        pygame.init()
-        pygame.display.set_caption(settings.TITLE)
-        self.screen = pygame.display.set_mode((int(settings.WIDTH), int(settings.HEIGHT)))
-        self.clock = pygame.time.Clock()
-        self.change_screen = ChangeScreen()
+def main():
+    pygame.init()
+    pygame.display.set_caption(settings.TITLE)
+    pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
+    clock = pygame.time.Clock()
 
-    def run(self):
-        game_screen = "first_screen"
+    story = StoryManager("story/dialogo.json")
+    story_screen = StoryScreen(story)
 
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            story_screen.handle_event(event)
 
-                game_screen = self.change_screen.handle_event(game_screen, event)
-
-            self.change_screen.render(game_screen)
-
-            pygame.display.update()
-            self.clock.tick(int(settings.FPS))
+        story_screen.run()
+        pygame.display.update()
+        clock.tick(settings.FPS)
 
 
-if __name__ == '__main__':
-    game = Game()
-    game.run()
+if __name__ == "__main__":
+    main()
