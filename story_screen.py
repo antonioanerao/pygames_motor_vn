@@ -1,6 +1,7 @@
 import pygame
 from menu_grid import MenuGrid
 from utils.screen_helpers import draw_base_screen
+import settings
 
 
 class StoryScreen:
@@ -18,7 +19,7 @@ class StoryScreen:
 
         if self.current_scene != self.story.current_scene:
             choices = [c["text"] for c in self.story.get_choices()]
-            self.menu = MenuGrid(choices, rows=2, columns=2, font_size=46)
+            self.menu = MenuGrid(choices, rows=4, columns=1, font_size=46)
             self.current_scene = self.story.current_scene
 
     def handle_event(self, event):
@@ -60,14 +61,30 @@ class StoryScreen:
         if not block:
             return
 
+        # --- Fundo e retângulo base ---
         draw_base_screen(
             self.display_surface,
             block.get("background", "black"),
-            f"{block.get('speaker', '')}: {block.get('text', '')}",
+            block.get("text", ""),
             block.get("text_2", "")
         )
 
-        self._build_menu_once()
+        speaker = block.get("speaker", "")
+        if speaker:
+            font = pygame.font.Font("./assets/font/great-vibes-regular.ttf", 72)
+            text_surface = font.render(speaker, True, pygame.Color("#f7d78b"))
+            text_rect = text_surface.get_rect(x=50, y=settings.HEIGHT * 0.9 - 120)
 
+            # fundo translúcido por trás
+            padding = 10
+            rect_bg = pygame.Surface((text_rect.width + padding, text_rect.height + padding), pygame.SRCALPHA)
+            rect_bg.fill((0, 0, 0, 160))
+            rect_rect = rect_bg.get_rect(x=45, y=settings.HEIGHT * 0.9 - 132)
+            self.display_surface.blit(rect_bg, rect_rect)
+
+            # texto principal
+            self.display_surface.blit(text_surface, text_rect)
+
+        self._build_menu_once()
         if self.menu:
             self.menu.draw()

@@ -4,7 +4,7 @@ import settings
 
 
 def draw_base_screen(display_surface, bg, text, text_2,
-                     rect_width=835, rect_height=100, rect_offset_y=550,
+                     rect_width=settings.WIDTH, rect_height=100, rect_offset_y=settings.HEIGHT - 100,
                      text_color='black', rect_color='white'):
     """
     Desenha o plano de fundo (imagem ou cor), a faixa branca e duas linhas de texto centralizadas.
@@ -34,7 +34,7 @@ def draw_base_screen(display_surface, bg, text, text_2,
         display_surface.fill(bg)
 
     # --- Retângulo branco ---
-    rect_x = settings.WIDTH // 2 - (rect_width // 2)
+    rect_x = 0
     rect = pygame.Rect(rect_x, rect_offset_y, rect_width, rect_height)
     display_surface.fill(rect_color, rect=rect)
 
@@ -43,8 +43,8 @@ def draw_base_screen(display_surface, bg, text, text_2,
     text_surface = font.render(text, True, text_color)
     text_surface_2 = font.render(text_2, True, text_color)
 
-    text_rect = text_surface.get_rect(center=(settings.WIDTH / 2, rect_offset_y + 30))
-    text_2_rect = text_surface_2.get_rect(center=(settings.WIDTH / 2, rect_offset_y + 60))
+    text_rect = text_surface.get_rect(x=50, y=settings.HEIGHT * 0.90)
+    text_2_rect = text_surface_2.get_rect(x=50, y=settings.HEIGHT * 0.94)
 
     display_surface.blit(text_surface, text_rect)
     display_surface.blit(text_surface_2, text_2_rect)

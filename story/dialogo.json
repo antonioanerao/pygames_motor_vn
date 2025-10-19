@@ -1,14 +1,13 @@
 {
   "first_screen": [
     {
-      "background": "assets/graphics/background.png",
+      "background": "assets/graphics/backgrounds/first_screen.png",
       "speaker": "Narrador",
-      "text": "Somos os Guerreiros da Inovação.",
+      "text": "Olá. Nós somos o SeringalLab. O núcleo de inovação do MPAC.",
       "text_2": "Qual caminho vamos trilhar primeiro?",
       "choices": [
-        { "text": "Site SeringalLab", "action": "open_link", "url": "https://seringallab.mpac.mp.br"},
-        { "text": "Opção 02 (em breve)", "next": "em_breve_02" },
         { "text": "Conhecer Iniciativas", "next": "iniciativas" },
+        { "text": "Site SeringalLab", "action": "open_link", "url": "https://seringallab.mpac.mp.br", "next": "lista_iniciativas" },
         { "text": "Sair", "action": "exit_game" }
       ]
     }
@@ -16,25 +15,25 @@
 
   "iniciativas": [
     {
-      "background": "assets/graphics/personagens/hycaro/sprite_01.png",
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
       "text": "Bem-vindo ao Seringal Lab!",
       "text_2": "Aqui a inovação ganha vida."
     },
     {
-      "background": "assets/graphics/personagens/hycaro/sprite_01.png",
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
       "text": "Nosso laboratório conecta tecnologia, criatividade e propósito.",
       "text_2": "Criamos soluções para transformar o Ministério Público do Acre."
     },
     {
-      "background": "assets/graphics/personagens/hycaro/sprite_01.png",
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
       "text": "De assistentes de IA a plataformas de transcrição automática,",
       "text_2": "cada projeto nasce da curiosidade e da colaboração."
     },
     {
-      "background": "assets/graphics/personagens/hycaro/sprite_01.png",
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
       "text": "Essas são algumas das iniciativas que estamos desenvolvendo:",
       "choices": [
@@ -60,7 +59,8 @@
 
   "anton": [
     {
-      "speaker": "Ana",
+      "background": "assets/graphics/backgrounds/viela.png",
+      "speaker": "Gato",
       "text": "Anton.IA é o nosso assistente virtual treinado com documentos do MPAC.",
       "text_2": "Ele ajuda servidores e promotores com informações rápidas e seguras.",
       "choices": [

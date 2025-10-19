@@ -26,8 +26,9 @@ class MenuGrid:
         self.spacing_y = 70
 
         # Posição inicial (centro por padrão)
-        self.start_x = start_x or settings.WIDTH // 2 - (self.rect_width + 20)
-        self.start_y = start_y or settings.HEIGHT - self.rect_height * self.rows - 40
+        self.start_x = settings.WIDTH * 0.95 - (self.rect_width * self.columns)
+        vertical_factor = 0.6 + (1 / (self.rows + 1)) * 0.25
+        self.start_y = settings.HEIGHT * vertical_factor - (self.rect_height * self.rows) / 2
 
     # --- Entrada do usuário ---
     def handle_event(self, event):
