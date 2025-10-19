@@ -2,6 +2,7 @@ import pygame
 from menu_grid import MenuGrid
 from utils.screen_helpers import draw_base_screen
 import settings
+import colors
 
 
 class StoryScreen:
@@ -72,15 +73,15 @@ class StoryScreen:
 
         speaker = block.get("speaker", "")
         if speaker:
-            font = pygame.font.Font("./assets/font/great-vibes-regular.ttf", 72)
-            text_surface = font.render(speaker, True, pygame.Color("#f7d78b"))
-            text_rect = text_surface.get_rect(x=50, y=settings.HEIGHT * 0.9 - 120)
+            font = pygame.font.Font("./assets/font/great-vibes-regular.ttf", 62)
+            text_surface = font.render(speaker, True, pygame.Color(colors.SERINGALLAB_LIGHT_2))
+            text_rect = text_surface.get_rect(x=10, y=settings.HEIGHT * 0.73)
 
             # fundo translúcido por trás
             padding = 10
             rect_bg = pygame.Surface((text_rect.width + padding, text_rect.height + padding), pygame.SRCALPHA)
             rect_bg.fill((0, 0, 0, 160))
-            rect_rect = rect_bg.get_rect(x=45, y=settings.HEIGHT * 0.9 - 132)
+            rect_rect = rect_bg.get_rect(x=5, y=settings.HEIGHT * 0.72)
             self.display_surface.blit(rect_bg, rect_rect)
 
             # texto principal

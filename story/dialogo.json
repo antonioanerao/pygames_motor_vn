@@ -45,7 +45,7 @@
 
   "lista_iniciativas": [
     {
-      "background": "assets/graphics/personagens/hycaro/sprite_01.png",
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Narrador",
       "text": "Essas são algumas das iniciativas que estamos desenvolvendo:",
       "choices": [
