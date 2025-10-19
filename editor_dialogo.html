@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de História (JSON)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      background: #1e1e1e;
+      color: #e6e6e6;
+    }
+    #sidebar {
+      width: 45%;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 2px solid #333;
+    }
+    #editor {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    h2 {
+      border-bottom: 1px solid #444;
+      padding-bottom: 4px;
+    }
+    .scene {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #2a2a2a;
+      border-radius: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 6px;
+      margin: 4px 0 10px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+    }
+    button {
+      background: #3c7170;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    button:hover { background: #4b9b97; }
+    pre { background: #111; padding: 10px; border-radius: 6px; overflow-x: auto; }
+    .choice-item, .block-item {
+      background: #333;
+      border-radius: 4px;
+      padding: 6px;
+      margin: 4px 0;
+    }
+    .choice-item small { color: #bbb; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>📜 História carregada</h2>
+    <input type="file" id="fileInput" accept=".json">
+    <div id="storyDisplay"></div>
+    <button id="downloadBtn" style="display:none;">💾 Baixar JSON atualizado</button>
+  </div>
+
+  <div id="editor">
+    <h2>✏️ Criar nova cena</h2>
+    <form id="sceneForm">
+      <label>Nome da cena:</label>
+      <input type="text" id="sceneName" required>
+
+      <div id="blocksContainer"></div>
+
+      <button type="button" id="addBlockBtn">➕ Adicionar bloco</button>
+
+      <hr>
+      <button type="submit">💾 Adicionar cena</button>
+    </form>
+  </div>
+
+  <script>
+    let storyData = {};
+
+    // --- Carregar arquivo JSON ---
+    document.getElementById("fileInput").addEventListener("change", function(evt) {
+      const file = evt.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        storyData = JSON.parse(e.target.result);
+        renderStory();
+        document.getElementById("downloadBtn").style.display = "inline-block";
+      };
+      reader.readAsText(file);
+    });
+
+    // --- Renderizar as cenas ---
+    function renderStory() {
+      const container = document.getElementById("storyDisplay");
+      container.innerHTML = "";
+
+      for (const [scene, blocks] of Object.entries(storyData)) {
+        const div = document.createElement("div");
+        div.className = "scene";
+
+        let info = `<strong>${scene}</strong>
+          <button title="Excluir cena"
+            style="float:right; background:none; border:none; color:#aaa; font-size:18px; cursor:pointer;"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='#aaa'"
+            onclick="deleteScene('${scene}')">✖</button><br>`;
+
+        info += `<small><em>Blocos:</em> ${blocks.length}</small><br><br>`;
+
+        blocks.forEach((block, i) => {
+          const choices = (block.choices || [])
+            .map(ch => `${ch.text} → ${ch.next || "(fim)"}`)
+            .join("<br>");
+          info += `<div style="margin-left:10px; margin-bottom:10px;">
+            <small><em>Bloco ${i + 1}</em> — Speaker: ${block.speaker || "(nenhum)"}</small><br>
+            <small><em>Texto:</em> ${block.text || ""}</small><br>
+            <small><em>Choices:</em><br>${choices || "(sem choices)"}</small>
+          </div>`;
+        });
+
+        div.innerHTML = info;
+        container.appendChild(div);
+      }
+
+      if (Object.keys(storyData).length === 0) {
+        container.innerHTML = "<p><em>Nenhuma cena no momento.</em></p>";
+      }
+    }
+
+    // --- Excluir cena ---
+    function deleteScene(sceneName) {
+      if (confirm(`Tem certeza que deseja excluir a cena "${sceneName}"?`)) {
+        delete storyData[sceneName];
+        renderStory();
+      }
+    }
+
+    // --- Adicionar novo bloco ---
+    document.getElementById("addBlockBtn").addEventListener("click", () => {
+      const container = document.getElementById("blocksContainer");
+      const blockDiv = document.createElement("div");
+      blockDiv.className = "block-item";
+
+      const blockIndex = container.children.length;
+      blockDiv.innerHTML = `
+        <h4>🗨️ Bloco ${blockIndex + 1}</h4>
+        <label>Speaker:</label>
+        <input type="text" class="blockSpeaker">
+
+        <label>Background:</label>
+        <input type="text" class="blockBackground">
+
+        <label>Texto principal:</label>
+        <textarea rows="2" class="blockText"></textarea>
+
+        <label>Texto secundário:</label>
+        <textarea rows="2" class="blockText2"></textarea>
+
+        <div class="choicesSection">
+          <strong>🎯 Choices (opcionais)</strong>
+          <div class="choicesContainer"></div>
+          <button type="button" class="addChoiceBtn">➕ Adicionar choice</button>
+        </div>
+        <button type="button" onclick="removeBlock(this)">❌ Remover bloco</button>
+        <hr>
+      `;
+      container.appendChild(blockDiv);
+
+      blockDiv.querySelector(".addChoiceBtn").addEventListener("click", () => {
+        const choiceDiv = document.createElement("div");
+        choiceDiv.className = "choice-item";
+        choiceDiv.innerHTML = `
+          <label>Texto da choice:</label>
+          <input type="text" class="choiceText">
+          <label>Próxima cena (next):</label>
+          <input type="text" class="choiceNext">
+          <button type="button" onclick="this.parentElement.remove()">❌</button>
+        `;
+        blockDiv.querySelector(".choicesContainer").appendChild(choiceDiv);
+      });
+    });
+
+    // --- Remover bloco ---
+    function removeBlock(btn) {
+      btn.parentElement.remove();
+    }
+
+    // --- Criar nova cena ---
+    document.getElementById("sceneForm").addEventListener("submit", function(evt) {
+      evt.preventDefault();
+      const sceneName = document.getElementById("sceneName").value.trim();
+      if (!sceneName) return alert("Informe o nome da cena.");
+
+      const blocks = [];
+      const blockDivs = document.querySelectorAll(".block-item");
+
+      blockDivs.forEach(blockDiv => {
+        const block = {
+          speaker: blockDiv.querySelector(".blockSpeaker").value.trim(),
+          background: blockDiv.querySelector(".blockBackground").value.trim(),
+          text: blockDiv.querySelector(".blockText").value.trim(),
+          text_2: blockDiv.querySelector(".blockText2").value.trim(),
+          choices: []
+        };
+
+        const choices = blockDiv.querySelectorAll(".choice-item");
+        choices.forEach(choiceDiv => {
+          const text = choiceDiv.querySelector(".choiceText").value.trim();
+          const next = choiceDiv.querySelector(".choiceNext").value.trim();
+          if (text) block.choices.push({ text, next });
+        });
+
+        blocks.push(block);
+      });
+
+      storyData[sceneName] = blocks;
+      renderStory();
+
+      evt.target.reset();
+      document.getElementById("blocksContainer").innerHTML = "";
+      alert(`Cena '${sceneName}' adicionada com ${blocks.length} bloco(s).`);
+    });
+
+    // --- Baixar JSON atualizado ---
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+      const blob = new Blob([JSON.stringify(storyData, null, 2)], {type: "application/json"});
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "historia_editada.json";
+      link.click();
+    });
+  </script>
+</body>
+</html>
