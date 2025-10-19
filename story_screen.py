@@ -19,8 +19,9 @@ class StoryScreen:
 
         if self.current_scene != self.story.current_scene:
             choices = [c["text"] for c in self.story.get_choices()]
-            self.menu = MenuGrid(choices, rows=4, columns=1, font_size=46)
-            self.current_scene = self.story.current_scene
+            if choices:
+                self.menu = MenuGrid(choices, rows=4, columns=1, font_size=46)
+                self.current_scene = self.story.current_scene
 
     def handle_event(self, event):
         block = self.story.get_block()
