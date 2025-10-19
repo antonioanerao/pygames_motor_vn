@@ -1,5 +1,6 @@
 import pygame
 import settings
+import colors
 
 
 class MenuGrid:
@@ -48,7 +49,7 @@ class MenuGrid:
         return None
 
     # --- Desenho do menu ---
-    def draw(self, highlight_color="#b9eb2e", normal_color="#3c7170", text_color="#ffffff"):
+    def draw(self, highlight_color=colors.SERINGALLAB_DARK, normal_color="#3c7170", text_color="#ffffff"):
         for i, text in enumerate(self.options):
             row = i // self.columns
             col = i % self.columns
