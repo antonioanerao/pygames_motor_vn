@@ -38,7 +38,7 @@
       "choices": [
         { "text": "Anton.IA", "next": "anton" },
         { "text": "TranscreveAI", "next": "transcreveai" },
-        { "text": "Bora! Reconhecer Talentos", "next": "bora" },
+        { "text": "SeringalPedia", "next": "anton" },
         { "text": "Ver mais", "next": "lista_iniciativas_02" }
       ]
     }
@@ -52,7 +52,7 @@
       "choices": [
         { "text": "Anton.IA", "next": "anton" },
         { "text": "TranscreveAI", "next": "transcreveai" },
-        { "text": "Bora! Reconhecer Talentos", "next": "bora" },
+        { "text": "SeringalPedia", "next": "anton" },
         { "text": "Ver mais", "next": "lista_iniciativas_02" }
       ]
     }
@@ -64,9 +64,9 @@
       "speaker": "Hycaro",
       "text": "Qual iniciativa você quer conhecer primeiro? ",
       "choices": [
-        { "text": "SeringalPedia", "next": "anton" },
-        { "text": "Simplifica", "next": "transcreveai" },
         { "text": "SeringalLink", "next": "bora" },
+        { "text": "Bora!", "next": "bora" },
+        { "text": "Simplifica", "next": "transcreveai" },
         { "text": "Voltar", "next": "lista_iniciativas_01" }
       ]
     }
