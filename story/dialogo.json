@@ -2,12 +2,12 @@
   "first_screen": [
     {
       "background": "assets/graphics/backgrounds/first_screen.png",
-      "speaker": "Narrador",
+      "speaker": "SeringalLab",
       "text": "Olá. Nós somos o SeringalLab. O núcleo de inovação do MPAC.",
-      "text_2": "Qual caminho vamos trilhar primeiro?",
+      "text_2": "Vamos apresentar para você as nossas iniciativas.",
       "choices": [
-        { "text": "Conhecer Iniciativas", "next": "iniciativas" },
-        { "text": "Site SeringalLab", "action": "open_link", "url": "https://seringallab.mpac.mp.br", "next": "lista_iniciativas" },
+        { "text": "Bora!", "next": "iniciativas" },
+        { "text": "Site SeringalLab", "action": "open_link", "url": "https://seringallab.mpac.mp.br" },
         { "text": "Sair", "action": "exit_game" }
       ]
     }
@@ -17,46 +17,60 @@
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Bem-vindo ao Seringal Lab!",
-      "text_2": "Aqui a inovação ganha vida."
+      "text": "Bem-vindo ao Seringal Lab! Aqui a inovação ganha vida!"
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Nosso laboratório conecta tecnologia, criatividade e propósito.",
-      "text_2": "Criamos soluções para transformar o Ministério Público do Acre."
+      "text": "Nosso laboratório conecta tecnologia, criatividade e propósito. Criamos soluções para",
+      "text_2": "transformar o Ministério Público do Acre."
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "De assistentes de IA a plataformas de transcrição automática,",
-      "text_2": "cada projeto nasce da curiosidade e da colaboração."
+      "text": "De assistentes de IA a plataformas de transcrição automática, cada projeto nasce da",
+      "text_2": "curiosidade e da colaboração."
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Essas são algumas das iniciativas que estamos desenvolvendo:",
-      "choices": [
-        { "text": "Anton.IA", "next": "anton" },
-        { "text": "TranscreveAI", "next": "transcreveai" }
-      ]
-    }
-  ],
-
-  "lista_iniciativas": [
-    {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Narrador",
-      "text": "Essas são algumas das iniciativas que estamos desenvolvendo:",
+      "text": "Qual iniciativa você quer conhecer primeiro?",
       "choices": [
         { "text": "Anton.IA", "next": "anton" },
         { "text": "TranscreveAI", "next": "transcreveai" },
         { "text": "Bora! Reconhecer Talentos", "next": "bora" },
-        { "text": "Voltar", "next": "first_screen" }
+        { "text": "Ver mais", "next": "lista_iniciativas_02" }
       ]
     }
   ],
 
+  "lista_iniciativas_01": [
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Qual iniciativa você quer conhecer primeiro?",
+      "choices": [
+        { "text": "Anton.IA", "next": "anton" },
+        { "text": "TranscreveAI", "next": "transcreveai" },
+        { "text": "Bora! Reconhecer Talentos", "next": "bora" },
+        { "text": "Ver mais", "next": "lista_iniciativas_02" }
+      ]
+    }
+  ],
+
+  "lista_iniciativas_02": [
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Qual iniciativa você quer conhecer primeiro? ",
+      "choices": [
+        { "text": "SeringalPedia", "next": "anton" },
+        { "text": "Simplifica", "next": "transcreveai" },
+        { "text": "SeringalLink", "next": "bora" },
+        { "text": "Voltar", "next": "lista_iniciativas_01" }
+      ]
+    }
+  ],
   "anton": [
     {
       "background": "assets/graphics/backgrounds/viela.png",
@@ -64,7 +78,7 @@
       "text": "Anton.IA é o nosso assistente virtual treinado com documentos do MPAC.",
       "text_2": "Ele ajuda servidores e promotores com informações rápidas e seguras.",
       "choices": [
-        { "text": "Voltar às iniciativas", "next": "lista_iniciativas" },
+        { "text": "Voltar às iniciativas", "next": "lista_iniciativas_01" },
         { "text": "Voltar ao menu principal", "next": "first_screen" }
       ]
     }
@@ -72,7 +86,7 @@
 
   "transcreveai": [
     {
-      "speaker": "João",
+      "speaker": "Natália",
       "text": "TranscreveAI converte áudios e vídeos em texto automaticamente.",
       "text_2": "Ideal para audiências, reuniões e treinamentos.",
       "choices": [
@@ -84,33 +98,11 @@
 
   "bora": [
     {
-      "speaker": "Carneiro",
+      "speaker": "Antonio",
       "text": "O projeto Bora! valoriza o talento humano dentro do MPAC.",
       "text_2": "Cada inovação é uma conquista coletiva!",
       "choices": [
         { "text": "Voltar às iniciativas", "next": "iniciativas" },
-        { "text": "Voltar ao menu principal", "next": "first_screen" }
-      ]
-    }
-  ],
-
-  "em_breve_01": [
-    {
-      "speaker": "Narrador",
-      "text": "Essa trilha ainda está sendo preparada.",
-      "text_2": "Aguarde novidades em breve!",
-      "choices": [
-        { "text": "Voltar ao menu principal", "next": "first_screen" }
-      ]
-    }
-  ],
-
-  "em_breve_02": [
-    {
-      "speaker": "Narrador",
-      "text": "Mais uma jornada de inovação está a caminho.",
-      "text_2": "Fique atento aos próximos capítulos!",
-      "choices": [
         { "text": "Voltar ao menu principal", "next": "first_screen" }
       ]
     }
