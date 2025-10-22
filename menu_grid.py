@@ -49,18 +49,31 @@ class MenuGrid:
                 return self.selected_option  # retorna o índice da opção selecionada
         return None
 
-    # --- Desenho do menu ---
-    def draw(self, highlight_color=colors.SERINGALLAB_DARK, normal_color="#3c7170", text_color="#ffffff"):
+    def draw(self,
+             highlight_color=colors.SERINGALLAB_DARK,
+             normal_color=colors.SERINGALLAB_LIGHT_3,
+             text_color=colors.WHITE):
         for i, text in enumerate(self.options):
             row = i // self.columns
             col = i % self.columns
 
             rect_x = self.start_x + col * self.spacing_x
             rect_y = self.start_y + row * self.spacing_y
-            rect = pygame.Rect(rect_x, rect_y, self.rect_width, self.rect_height)
 
             color = pygame.Color(highlight_color if i == self.selected_option else normal_color)
-            pygame.draw.rect(self.display_surface, color, rect, border_radius=6)
+            rect = pygame.Rect(rect_x, rect_y, self.rect_width, self.rect_height)
+
+            box_surface = pygame.Surface((self.rect_width, self.rect_height), pygame.SRCALPHA)
+            rgba_color = (*color[:3], 230)
+            pygame.draw.rect(box_surface, rgba_color, box_surface.get_rect(), border_radius=16)
+
+            pygame.draw.rect(box_surface,
+                             (*pygame.Color(highlight_color)[:3], 255),
+                             box_surface.get_rect(),
+                             width=3,
+                             border_radius=16)
+
+            self.display_surface.blit(box_surface, (rect_x, rect_y))
 
             text_surface = self.font.render(text, True, pygame.Color(text_color))
             text_rect = text_surface.get_rect(midleft=(rect.x + 20, rect.centery))
