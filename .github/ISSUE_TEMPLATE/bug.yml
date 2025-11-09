@@ -30,7 +30,6 @@ body:
       attributes:
           label: Sistema operacional
           description: Informe qual sistema está usando
-          placeholder: Exemplo > Ubuntu 24.04 / Windows 11 / macOS 15.0
     validations:
       validations:
           required: true
