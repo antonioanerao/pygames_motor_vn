@@ -30,7 +30,6 @@ body:
       attributes:
           label: Sistema operacional
           description: Informe qual sistema está usando
-    validations:
       validations:
           required: true
     - type: dropdown
