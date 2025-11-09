@@ -1,109 +1,123 @@
 {
   "first_screen": [
     {
-      "background": "assets/graphics/backgrounds/first_screen.png",
-      "speaker": "SeringalLab",
-      "text": "Olá. Nós somos o SeringalLab. O núcleo de inovação do MPAC.",
-      "text_2": "Vamos apresentar para você as nossas iniciativas.",
+      "background": "assets/graphics/intro.png",
       "choices": [
-        { "text": "Bora!", "next": "iniciativas" },
-        { "text": "Site SeringalLab", "action": "open_link", "url": "https://seringallab.mpac.mp.br" },
+        { "text": "Jogar", "next": "second_screen" },
         { "text": "Sair", "action": "exit_game" }
       ]
     }
   ],
 
-  "iniciativas": [
+  "second_screen": [
     {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "background": "assets/graphics/backgrounds/second_screen.png",
       "speaker": "Hycaro",
-      "text": "Bem-vindo ao Seringal Lab! Aqui a inovação ganha vida!"
-    },
-    {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Hycaro",
-      "text": "Nosso laboratório conecta tecnologia, criatividade e propósito. Criamos soluções para",
-      "text_2": "transformar o Ministério Público do Acre."
-    },
-    {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Hycaro",
-      "text": "De assistentes de IA a plataformas de transcrição automática, cada projeto nasce da",
-      "text_2": "curiosidade e da colaboração."
-    },
-    {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Hycaro",
-      "text": "Qual iniciativa você quer conhecer primeiro?",
+      "text": "Olá! Somos o SeringalLab, o núcleo de inovação do MPAC.",
+      "text_2": "Hoje você vai aprender, jogando, como criar uma história usando o nosso motor de Visual Novel.",
       "choices": [
-        { "text": "Anton.IA", "next": "anton" },
-        { "text": "TranscreveAI", "next": "transcreveai" },
-        { "text": "SeringalPedia", "next": "anton" },
-        { "text": "Ver mais", "next": "lista_iniciativas_02" }
+        { "text": "Vamos lá!", "next": "introducao" },
+        { "text": "Sair", "action": "exit_game" }
       ]
     }
   ],
 
-  "lista_iniciativas_01": [
+  "introducao": [
     {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Hycaro",
-      "text": "Qual iniciativa você quer conhecer primeiro?",
-      "choices": [
-        { "text": "Anton.IA", "next": "anton" },
-        { "text": "TranscreveAI", "next": "transcreveai" },
-        { "text": "SeringalPedia", "next": "anton" },
-        { "text": "Ver mais", "next": "lista_iniciativas_02" }
-      ]
-    }
-  ],
-
-  "lista_iniciativas_02": [
-    {
-      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
-      "speaker": "Hycaro",
-      "text": "Qual iniciativa você quer conhecer primeiro? ",
-      "choices": [
-        { "text": "SeringalLink", "next": "bora" },
-        { "text": "Bora!", "next": "bora" },
-        { "text": "Simplifica", "next": "transcreveai" },
-        { "text": "Voltar", "next": "lista_iniciativas_01" }
-      ]
-    }
-  ],
-  "anton": [
-    {
-      "background": "assets/graphics/backgrounds/viela.png",
-      "speaker": "Gato",
-      "text": "Anton.IA é o nosso assistente virtual treinado com documentos do MPAC.",
-      "text_2": "Ele ajuda servidores e promotores com informações rápidas e seguras.",
-      "choices": [
-        { "text": "Voltar às iniciativas", "next": "lista_iniciativas_01" },
-        { "text": "Voltar ao menu principal", "next": "first_screen" }
-      ]
-    }
-  ],
-
-  "transcreveai": [
-    {
-      "speaker": "Natália",
-      "text": "TranscreveAI converte áudios e vídeos em texto automaticamente.",
-      "text_2": "Ideal para audiências, reuniões e treinamentos.",
-      "choices": [
-        { "text": "Voltar às iniciativas", "next": "iniciativas" },
-        { "text": "Voltar ao menu principal", "next": "first_screen" }
-      ]
-    }
-  ],
-
-  "bora": [
-    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_02_antonio.png",
       "speaker": "Antonio",
-      "text": "O projeto Bora! valoriza o talento humano dentro do MPAC.",
-      "text_2": "Cada inovação é uma conquista coletiva!",
+      "text": "Nosso motor foi feito para transformar ideias em histórias interativas.",
+      "text_2": "Você cria a narrativa e o sistema cuida do resto — sem precisar programar!"
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_02_antonio.png",
+      "speaker": "Antonio",
+      "text": "Tudo começa com um gerador simples de histórias. Você escreve os diálogos, define os",
+      "text_2": "personagens e as escolhas e o motor transforma isso em uma experiência jogável."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_02_antonio.png",
+      "speaker": "Antonio",
+      "text": "Quer conhecer os blocos que formam uma história?",
       "choices": [
-        { "text": "Voltar às iniciativas", "next": "iniciativas" },
-        { "text": "Voltar ao menu principal", "next": "first_screen" }
+        { "text": "Sim, quero aprender!", "next": "blocos" },
+        { "text": "Depois eu vejo", "next": "acoes_especiais" }
+      ]
+    }
+  ],
+
+  "blocos": [
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Cada parte da história é um *bloco narrativo*, com um nome único.",
+      "text_2": "Por exemplo: 'introducao', 'cena_01' ou 'final_feliz'."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Dentro de cada bloco, você pode definir o personagem que fala, o texto e até uma imagem de fundo."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "E sabe o que deixa tudo divertido? As *escolhas*!",
+      "text_2": "Com elas, o jogador decide o rumo da história."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Por exemplo, se o jogador escolher 'Seguir pelo caminho da inovação', o jogo pode levar a um novo bloco chamado 'inovacao'.",
+      "text_2": "Assim, cada decisão cria um novo caminho!"
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Quer saber sobre as ações especiais, como abrir links ou encerrar o jogo?",
+      "choices": [
+        { "text": "Sim, quero saber!", "next": "acoes_especiais" },
+        { "text": "Pular essa parte", "next": "encerramento" }
+      ]
+    }
+  ],
+
+  "acoes_especiais": [
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Algumas escolhas podem executar *ações especiais*.",
+      "text_2": "Por exemplo: abrir um site, voltar ao menu ou encerrar o jogo."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Essas ações são úteis para criar menus interativos, créditos ou até minigames dentro do seu projeto!"
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Agora que você entendeu o conceito, está pronto para criar suas próprias histórias!",
+      "choices": [
+        { "text": "Continuar", "next": "encerramento" }
+      ]
+    }
+  ],
+
+  "encerramento": [
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao.png",
+      "speaker": "Antonio",
+      "text": "Parabéns! Você acabou de aprender a base do nosso motor de Visual Novel.",
+      "text_2": "A partir daqui, o gerador de histórias vai ajudar você a criar novos mundos, diálogos e finais alternativos."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao.png",
+      "speaker": "Antonio",
+      "text": "Lembre-se: o importante é experimentar, brincar com as possibilidades e deixar a criatividade falar mais alto!",
+      "choices": [
+        { "text": "Voltar ao início", "next": "first_screen" },
+        { "text": "Nosso Site", "action": "open_link", "url": "https://seringallab.mpac.mp.br" },
+        { "text": "Sair do jogo", "action": "exit_game" }
       ]
     }
   ]

@@ -2,7 +2,6 @@ import pygame
 import os
 import settings
 import utils.diag_box
-import colors
 
 
 def draw_base_screen(
@@ -37,9 +36,6 @@ def draw_base_screen(
         # Caso contrário, usa como cor de fundo
         display_surface.fill(bg)
 
-    # --- Retângulo branco ---
-    utils.diag_box.draw_dialog_box(display_surface, rect_offset_y, rect_width, rect_height)
-
     # --- Textos ---
     font = pygame.font.Font(None, 40)
     text_surface = font.render(text, True, text_color)
@@ -48,5 +44,9 @@ def draw_base_screen(
     text_rect = text_surface.get_rect(x=50, y=settings.HEIGHT * 0.89)
     text_2_rect = text_surface_2.get_rect(x=50, y=settings.HEIGHT * 0.93)
 
-    display_surface.blit(text_surface, text_rect)
-    display_surface.blit(text_surface_2, text_2_rect)
+    # --- Retângulo branco ---
+    if text_rect or text_2_rect:
+        utils.diag_box.draw_dialog_box(display_surface, rect_offset_y, rect_width, rect_height)
+
+        display_surface.blit(text_surface, text_rect)
+        display_surface.blit(text_surface_2, text_2_rect)
