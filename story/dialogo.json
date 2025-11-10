@@ -56,7 +56,8 @@
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Dentro de cada bloco, você pode definir o personagem que fala, o texto e até uma imagem de fundo."
+      "text": "Dentro de cada bloco, você pode definir o personagem que fala, o texto e até uma imagem",
+      "text_2": "de fundo."
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
@@ -67,8 +68,13 @@
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Por exemplo, se o jogador escolher 'Seguir pelo caminho da inovação', o jogo pode levar a um novo bloco chamado 'inovacao'.",
-      "text_2": "Assim, cada decisão cria um novo caminho!"
+      "text": "Por exemplo, se o jogador escolher 'Seguir pelo caminho da inovação', o jogo",
+      "text_2": "pode levar a um novo bloco chamado 'inovacao'."
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
+      "speaker": "Hycaro",
+      "text": "Assim, cada decisão cria um novo caminho!"
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
@@ -91,7 +97,8 @@
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
       "speaker": "Hycaro",
-      "text": "Essas ações são úteis para criar menus interativos, créditos ou até minigames dentro do seu projeto!"
+      "text": "Essas ações são úteis para criar menus interativos, créditos ou até",
+      "text_2": "minigames dentro do seu projeto!"
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao_hycaro.png",
@@ -107,13 +114,19 @@
     {
       "background": "assets/graphics/backgrounds/sala_inovacao.png",
       "speaker": "Antonio",
-      "text": "Parabéns! Você acabou de aprender a base do nosso motor de Visual Novel.",
-      "text_2": "A partir daqui, o gerador de histórias vai ajudar você a criar novos mundos, diálogos e finais alternativos."
+      "text": "Parabéns! Você acabou de aprender a base do nosso motor de Visual Novel."
     },
     {
       "background": "assets/graphics/backgrounds/sala_inovacao.png",
       "speaker": "Antonio",
-      "text": "Lembre-se: o importante é experimentar, brincar com as possibilidades e deixar a criatividade falar mais alto!",
+      "text": "A partir daqui, o gerador de histórias vai ajudar você a criar novos mundos,",
+      "text_2": "diálogos e finais alternativos. "
+    },
+    {
+      "background": "assets/graphics/backgrounds/sala_inovacao.png",
+      "speaker": "Antonio",
+      "text": "Lembre-se: o importante é experimentar, brincar com as possibilidades e deixar",
+      "text_2": "a criatividade falar mais alto!",
       "choices": [
         { "text": "Voltar ao início", "next": "first_screen" },
         { "text": "Nosso Site", "action": "open_link", "url": "https://seringallab.mpac.mp.br" },
