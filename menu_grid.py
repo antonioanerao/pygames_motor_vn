@@ -83,6 +83,7 @@ class MenuGrid:
                     elif event.value < -0.5:
                         if self.selected_option - self.columns >= 0:
                             self.selected_option -= self.columns
+                        self.last_move_time = current_time
 
         return None
 
