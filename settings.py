@@ -1,5 +1,5 @@
 TITLE = "Jogo de Telas"
 WIDTH = 1380
-HEIGHT = 900
+HEIGHT = 850
 FPS = 60
 TILESIZE = 64

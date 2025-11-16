@@ -1,4 +1,5 @@
 import pygame
+from pygame._sdl2 import controller
 from menu_grid import MenuGrid
 from utils.screen_helpers import draw_base_screen
 import utils.speaker_helpers
@@ -56,6 +57,13 @@ class StoryScreen:
             if not advanced:
                 self.story.goto("first_screen")
             self.menu = None
+
+        if event.type == pygame.JOYBUTTONDOWN:
+            if event.button == 0:  # Botão A
+                advanced = self.story.next_block()
+                if not advanced:
+                    self.story.goto("first_screen")
+                self.menu = None
 
     def run(self):
         block = self.story.get_block()

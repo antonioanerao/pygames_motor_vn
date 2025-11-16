@@ -17,10 +17,10 @@ class StoryManager:
             start_scene (str): Cena inicial a ser carregada.
         """
         with open(json_path, "r", encoding="utf-8") as f:
-            self.data = json.load(f)  # Carrega o conteúdo completo do JSON
+            self.data = json.load(f)
 
-        self.current_scene = start_scene  # Nome da cena atual (chave no JSON)
-        self.index = 0                    # Índice do bloco atual dentro da cena
+        self.current_scene = start_scene
+        self.index = 0
 
     def get_block(self):
         """
@@ -85,10 +85,8 @@ class StoryManager:
         Cada módulo deve conter uma função 'run(**kwargs)'.
         """
         try:
-            # Importa o módulo da pasta /actions dinamicamente
             module = importlib.import_module(f"actions.{action_name}")
 
-            # Verifica se o módulo possui a função 'run'
             if hasattr(module, "run"):
                 module.run(**kwargs)
             else:

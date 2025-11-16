@@ -1,6 +1,15 @@
 import pygame
+import time
 import settings
 import colors
+
+from pygame._sdl2 import controller
+
+controller.init()
+
+for i in range(controller.get_count()):
+    c = controller.Controller(i)
+    print("Nome:", c.name)
 
 
 class MenuGrid:
@@ -30,6 +39,9 @@ class MenuGrid:
         vertical_factor = 0.6 + (1 / (self.rows + 1)) * 0.25
         self.start_y = settings.HEIGHT * vertical_factor - (self.rect_height * self.rows) / 2
 
+        self.last_move_time = 0
+        self.move_delay = 0.25
+
     # --- Entrada do usuário ---
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -46,7 +58,32 @@ class MenuGrid:
                 if self.selected_option - self.columns >= 0:
                     self.selected_option -= self.columns
             elif event.key in [pygame.K_RETURN, pygame.K_SPACE]:
-                return self.selected_option  # retorna o índice da opção selecionada
+                return self.selected_option
+
+        if event.type == pygame.JOYBUTTONDOWN:
+            if event.button == 0:  # Botão A
+                return self.selected_option
+            if event.button == 11:
+                if self.selected_option - self.columns >= 0:
+                    self.selected_option -= self.columns
+            if event.button == 12:
+                if self.selected_option + self.columns < len(self.options):
+                    self.selected_option += self.columns
+
+        # --- ANALÓGICO ESQUERDO ---
+        elif event.type == pygame.JOYAXISMOTION:
+            current_time = time.time()
+
+            if current_time - self.last_move_time > self.move_delay:
+                if event.axis == 1:
+                    if event.value > 0.5:
+                        if self.selected_option + self.columns < len(self.options):
+                            self.selected_option += self.columns
+                        self.last_move_time = current_time
+                    elif event.value < -0.5:
+                        if self.selected_option - self.columns >= 0:
+                            self.selected_option -= self.columns
+
         return None
 
     def draw(self,
