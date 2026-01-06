@@ -7,10 +7,6 @@ from pygame._sdl2 import controller
 
 controller.init()
 
-for i in range(controller.get_count()):
-    c = controller.Controller(i)
-    print("Nome:", c.name)
-
 
 class MenuGrid:
     def __init__(self, options, start_x=None, start_y=None, rows=2, columns=2, font_size=50):
